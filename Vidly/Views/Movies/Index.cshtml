@@ -4,11 +4,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-<ul>
+<h2>Movies</h2>
+<table border="1" align="center" width="100%">
+    <tr>
+        <th>MovieNmae</th>
+        <th>Genre</th>
+    </tr>
     @foreach(var movie in Model)
     {
-        <li>@movie.Name</li>
+        <tr> <td>@Html.ActionLink(movie.Name,"Details", new { id=movie.Id}) </td>
+        <td>@movie.Genre.GenreName</td></tr>
     }
-</ul>
+</table>
 

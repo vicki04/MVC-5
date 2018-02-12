@@ -4,7 +4,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>@Model.name</h2>
 
-<h4>@Model.name</h4>
+<h4>MembershipType: @Model.MembershipType.Name </h4>
+@if (Model.BirthDate != null)
+{
+<h4>BirthDate: @Model.BirthDate</h4>
+}
 

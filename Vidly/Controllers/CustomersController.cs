@@ -71,8 +71,17 @@ namespace Vidly.Controllers
             return View("CustomerForm",viewModel);
         }
         [HttpPost]
-        public ActionResult Create(CustomerFormViewModel customers)
+        public ActionResult Create([Bind(Exclude =("Id"))]CustomerFormViewModel customers)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new CustomerFormViewModel
+                {
+                    Customer = customers.Customer,
+                    MembershipTypes = _context.MembershipType.ToList()
+                };
+                return View("CustomerForm", viewModel);
+            }
             if (customers.Customer.Id == 0)
             {
                 _context.Customers.Add(customers.Customer);
